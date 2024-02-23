@@ -5,13 +5,25 @@ multilingual = false
 src = "src"
 title = "mdBook Test"
 
+[preprocessor.fs-summary]
+clean-paths = true
+
+# other preprocessors will naturally need to 
+# run after the summary has been generated 
+[preprocessor.links]
+after = ["fs-summary"]
+
 [preprocessor.yml-header]
 
 [preprocessor.cmdrun]
+after = ["fs-summary"]
+
+[preprocessor.echarts]
+after = ["fs-summary"]
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
 
 [output.html]
 no-section-label = true
-additional-js = ["mermaid.min.js", "mermaid-init.js"]
+additional-js = [".vendor/mermaid.min.js", ".vendor/mermaid-init.js", ".vendor/echarts.min.js"]
